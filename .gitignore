@@ -2,4 +2,4 @@
 config
 build/**
 dist/**
-library_name.egg-info/**
+*.egg-info/**

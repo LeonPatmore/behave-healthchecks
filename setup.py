@@ -8,12 +8,12 @@ with open(os.path.join(HERE, 'README.md')) as f:
     README = f.read()
 
 setup(
-    name='library-name',
+    name='behave_healthchecks',
     long_description=README,
     version='0.0.2',
-    setup_requires=[],
+    install_requires=['behave'],
     tests_require=[],
-    packages=["example"],
+    packages=["behave_healthchecks"],
     author='Leon Patmore',
     description=''
 )
