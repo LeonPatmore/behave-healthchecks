@@ -1,6 +1,5 @@
+from behave.formatter.base import Formatter
 
-class SomeClient(object):
 
-    @staticmethod
-    def say_hi():
-        print("hi")
+class HealthcheckFormatter(Formatter):
+
