@@ -1,7 +1,6 @@
 from behave import given, when, then
 
 
-
 @given('I am a user')
 def i_am_a_user(context):
     pass

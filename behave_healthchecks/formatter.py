@@ -4,7 +4,7 @@ from behave.formatter.base import Formatter
 from healthchecks_io import Client
 
 
-CHECKS_CLIENT = Client()
+CHECKS_CLIENT = Client(api_url=)
 
 
 class HealthCheckFormatter(Formatter):
