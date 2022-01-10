@@ -4,7 +4,7 @@ from behave.formatter.base import Formatter
 from healthchecks_io import Client
 
 
-CHECKS_CLIENT = Client(api_url=)
+CHECKS_CLIENT = Client(ping_url="localhost:1234")
 
 
 class HealthCheckFormatter(Formatter):
