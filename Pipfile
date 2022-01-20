@@ -9,6 +9,7 @@ healthchecks-io = "*"
 
 [dev-packages]
 mock-server = "*"
+tornado = "*"
 
 [requires]
 python_version = "3.9"
