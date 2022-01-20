@@ -35,4 +35,4 @@ get_token:
 	aws codeartifact get-authorization-token --domain ${DOMAIN} --query authorizationToken --output text
 
 test:
-	pipenv run python -m behave -f behave_healthchecks:HealthCheckFormatter tests/features
+	set "PING_URL=http://localhost:58179" && pipenv run python -m behave -f behave_healthchecks:HealthCheckFormatter tests/features

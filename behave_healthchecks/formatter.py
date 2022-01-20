@@ -1,10 +1,12 @@
+import os
 import re
 
 from behave.formatter.base import Formatter
 from healthchecks_io import Client
 
 
-CHECKS_CLIENT = Client(ping_url="localhost:1234")
+PING_URL = os.environ.get("PING_URL", "https://hc-ping.com/")
+CHECKS_CLIENT = Client(ping_url=PING_URL)
 
 
 class HealthCheckFormatter(Formatter):
@@ -31,11 +33,12 @@ class HealthCheckFormatter(Formatter):
 
     def scenario(self, scenario):
         self.current_scenario = scenario
+        print (PING_URL)
         print (scenario.tags)
         check_id = self.extract_health_check_id_from_tags(scenario.tags)
         if check_id is not None:
             CHECKS_CLIENT.start_ping(uuid=check_id)
-        print ("check: " + self.extract_health_check_from_tags(scenario.tags))
+        print ("check: " + self.extract_health_check_id_from_tags(scenario.tags))
         pass
 
     def result(self, step):

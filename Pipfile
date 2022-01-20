@@ -8,8 +8,7 @@ behave = "*"
 healthchecks-io = "*"
 
 [dev-packages]
-mock-server = "*"
-tornado = "*"
+flask = "*"
 
 [requires]
 python_version = "3.9"
