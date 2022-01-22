@@ -1,5 +1,5 @@
+import logging
 import threading
-from time import sleep
 
 import flask
 from behave import fixture
@@ -7,7 +7,6 @@ from flask import jsonify
 from werkzeug.serving import make_server
 
 _PORT = 58179
-APP = None  # type: MockServer or None
 
 
 class MockServer(threading.Thread):
@@ -18,10 +17,12 @@ class MockServer(threading.Thread):
         app = flask.Flask(__name__)
 
         def started():
+            logging.info("Ping start detected!")
             self.started = True
             return jsonify(success=True)
 
         app.add_url_rule("/abc123/start", methods=["POST"], view_func=started)
+        app.add_url_rule("/abc123", methods=["POST"], view_func=lambda: jsonify(success=True))
         self.server = make_server('127.0.0.1', _PORT, app)
         self.ctx = app.app_context()
         self.ctx.push()
@@ -41,20 +42,21 @@ class MockServer(threading.Thread):
 
 @fixture
 def start_mock_server(context, **kwargs):
-    global APP
-    APP = MockServer()
-    APP.start()
+    logging.info("Starting mock server!")
+    mock_server = MockServer()
+    mock_server.start()
+
+    context.mock_server = mock_server
 
     yield
 
-    stop_mock_server()
+    stop_mock_server(mock_server)
 
 
-def stop_mock_server():
-    if APP is None:
-        return
-    APP.shutdown()
-    APP.join(timeout=5)
+def stop_mock_server(mock_server: MockServer):
+    logging.info("Stopping mock server!")
+    mock_server.shutdown()
+    mock_server.join(timeout=5)
 
 
 if __name__ == '__main__':

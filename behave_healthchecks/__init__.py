@@ -1,1 +1,1 @@
-from .formatter import HealthCheckFormatter
+from .healthcheck_formatter import HealthCheckFormatter
