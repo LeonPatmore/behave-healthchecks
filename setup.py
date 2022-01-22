@@ -11,7 +11,7 @@ setup(
     name='behave_healthchecks',
     long_description=README,
     version='0.0.2',
-    install_requires=['behave'],
+    install_requires=['behave', 'healthchecks-io'],
     tests_require=[],
     packages=["behave_healthchecks"],
     author='Leon Patmore',
