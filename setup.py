@@ -8,7 +8,7 @@ with open(os.path.join(HERE, 'README.md')) as f:
     README = f.read()
 
 setup(
-    name='behave_healthchecks',
+    name='behave-healthchecks',
     long_description=README,
     version='0.0.2',
     install_requires=['behave', 'healthchecks-io'],
